@@ -32,7 +32,6 @@ Matrix.prototype.isNotColored = function (i, j) {
 };
 
 Matrix.prototype.toggleColor = function (i, j) {
-  console.log('toggle color', i, j);
   this.matrix[i][j] = (this.matrix[i][j] === 0 ? 1 : 0);
 };
 

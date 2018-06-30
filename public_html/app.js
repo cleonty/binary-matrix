@@ -16,7 +16,7 @@ app.controller('appController', function () {
   this.autoTest = function () {
     const domainCount = ctrl.matrix.auto(ctrl.prob);
     const testResult = {
-      prob: ctrl.prob,
+      prob: ctrl.prob.toFixed(2),
       domainCount: domainCount,
       size: ctrl.matrix.size()
     };

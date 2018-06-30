@@ -1,0 +1,20 @@
+.matrix {
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.cell {
+  display: flex;
+  width: 20px;
+  height: 20px;;
+  font-size: 16px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  margin: 2px;
+}

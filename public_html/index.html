@@ -1,0 +1,39 @@
+<html ng-app="app">
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="app.css"/>
+  </head>
+  <body ng-controller="appController as ctrl">
+    <input required type="number" max="40" min="1" ng-model="ctrl.n"/>
+    <input required type="number" max="40" min="1" ng-model="ctrl.m"/>
+    <input type="button" value="Новая матрица" ng-click="ctrl.newMatrix()">
+    <div class="matrix">
+      <div class="row" ng-repeat="(i, row) in ctrl.matrix.matrix track by $index">
+        <div class="cell" ng-repeat="(j, col) in row track by $index" ng-click="ctrl.matrix.toggleColor(i, j)" ng-style="{'background-color': ctrl.matrix.palette[col]}">
+          {{col > 0 ? 1 : 0}}
+        </div>
+      </div>
+    </div>
+    <input type="button" ng-click="ctrl.matrix.colorize()" value="Посчитать домены"/>
+    <input required type="number" max="0.99" min="0.01" step=".01" ng-model="ctrl.prob"/>
+    <input type="button" ng-click="ctrl.autoTest()" value="АВТО"/>
+    <div>Количество доменов: {{ctrl.matrix.domainCount}}</div>
+    <table class="results">
+      <tr>
+        <th>Вероятность</th>
+        <th>Количество доменов в матрице</th>
+        <th>Количество ячеек в матрице(N*M)</th>
+      </tr>
+      <tr class="resultRow" ng-repeat="result in ctrl.testResults track by $index">
+        <td class="resultCell">{{result.prob}}</td>
+        <td class="resultCell">{{result.domainCount}}</td>
+        <td class="resultCell">{{result.size}}</td>
+      </tr>
+    </table>
+  </body>
+  <script src="angular.min.js"></script>
+  <script src="solution.js"></script>
+  <script src="app.js"></script>
+</html>

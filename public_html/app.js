@@ -4,7 +4,7 @@ app.controller('appController', function () {
   this.n = 5;
   this.m = 6;
   this.prob = 0.5;
-  this.matrix = new Matrix(5 , 6);
+  this.matrix = null;
   this.testResults = [];
   const maxTestResults = 10;
   const ctrl = this;

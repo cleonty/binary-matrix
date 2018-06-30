@@ -18,3 +18,23 @@
   border-radius: 3px;
   margin: 2px;
 }
+
+.results {
+  border-collapse: collapse;
+}
+.results, .results td, .results th {
+  border: 1px solid black;
+}
+
+.results td, .results th {
+  padding: 5px 5px;
+  text-align: center;
+}
+
+.results th {
+  height: 50px;
+  vertical-align: middle;
+}
+
+.results td {
+}

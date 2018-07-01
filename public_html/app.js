@@ -8,12 +8,23 @@ app.controller('appController', function () {
   this.testResults = [];
   const maxTestResults = 10;
   const ctrl = this;
+  this.matrixEditable = false;
   
   this.newMatrix = function () {
     ctrl.matrix = new Matrix(ctrl.n, ctrl.m);
+    ctrl.matrixEditable = true;
   };
-  
+  this.toggleColor = function(i, j) {
+    if (ctrl.matrixEditable) {
+      ctrl.matrix.toggleColor(i, j);
+    }
+  };
+  this.findDomains = function () {
+    ctrl.matrix.colorize();
+    ctrl.matrixEditable = false;
+  };
   this.autoTest = function () {
+    ctrl.matrixEditable = false;
     const domainCount = ctrl.matrix.auto(ctrl.prob);
     const testResult = {
       prob: ctrl.prob.toFixed(2),

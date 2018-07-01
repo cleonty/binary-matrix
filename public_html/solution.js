@@ -1,10 +1,10 @@
 function Matrix(n, m) {
   this.n = n;
   this.m = m;
-  this.matrix = new Array(n);
+  this.data = new Array(n);
   for (let i = 0; i < n; i++) {
-    this.matrix[i] = new Array(m);
-    this.matrix[i].fill(0);
+    this.data[i] = new Array(m);
+    this.data[i].fill(0);
   }
   this.domainCount = 0;
   this.firstColorIndex = 2;
@@ -28,15 +28,15 @@ Matrix.prototype.inMatrix = function (i, j) {
 };
 
 Matrix.prototype.isNotColored = function (i, j) {
-  return this.matrix[i][j] === 1;
+  return this.data[i][j] === 1;
 };
 
 Matrix.prototype.toggleColor = function (i, j) {
-  this.matrix[i][j] = (this.matrix[i][j] === 0 ? 1 : 0);
+  this.data[i][j] = (this.data[i][j] === 0 ? 1 : 0);
 };
 
 Matrix.prototype.setColor = function (i, j, color) {
-  this.matrix[i][j] = color;
+  this.data[i][j] = color;
 };
 
 Matrix.prototype.propogateColorRight = function (i, j, color) {
@@ -81,21 +81,21 @@ Matrix.prototype.createColorPallette = function () {
 };
 
 Matrix.prototype.autoFill = function (prob) {
-  const matrix = this.matrix;
+  const data = this.data;
   for (let i = 0; i < this.n; i++) {
     for (let j = 0; j < this.m; j++) {
-      matrix[i][j] = random(prob);
+      data[i][j] = random(prob);
     }
   }
 };
 Matrix.prototype.print = function () {
   var result = "";
-  const matrix = this.matrix;
+  const data = this.data;
   const m = this.m;
   const n = this.n;
   for (let i = 0; i < this.n; i++) {
     for (let j = 0; j < this.m; j++) {
-      result += " " + matrix[i][j];
+      result += " " + data[i][j];
     }
     result += "\n";
   }
@@ -124,7 +124,7 @@ function randomColor() {
 
 const m = new Matrix(5, 6);
 
-m.matrix = [[1, 0, 0, 0, 1, 0],
+m.data = [[1, 0, 0, 0, 1, 0],
   [1, 1, 0, 0, 0, 1],
   [0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 1],
@@ -133,7 +133,7 @@ m.matrix = [[1, 0, 0, 0, 1, 0],
 m.print();
 m.colorize();
 
-m.matrix = [[1, 1, 1, 1, 1, 1],
+m.data = [[1, 1, 1, 1, 1, 1],
   [1, 0, 1, 0, 0, 1],
   [1, 0, 1, 0, 0, 1],
   [1, 0, 1, 0, 0, 1],

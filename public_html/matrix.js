@@ -63,7 +63,6 @@ Matrix.prototype.colorize = function () {
     for (let j = 0; j < this.m; j++) {
       if (this.isNotColored(i, j)) {
         this.propogateColor(i, j, color);
-        this.print();
         color++;
         this.domainCount++;
       }
@@ -88,19 +87,6 @@ Matrix.prototype.autoFill = function (prob) {
     }
   }
 };
-Matrix.prototype.print = function () {
-  var result = "";
-  const data = this.data;
-  const m = this.m;
-  const n = this.n;
-  for (let i = 0; i < this.n; i++) {
-    for (let j = 0; j < this.m; j++) {
-      result += " " + data[i][j];
-    }
-    result += "\n";
-  }
-  console.log('matrix \n' + result);
-};
 
 Matrix.prototype.auto = function (prob) {
   this.autoFill(prob);
@@ -119,26 +105,3 @@ function randomColor() {
   const hexColor = Math.floor(Math.random() * 0x1000000).toString(16);
   return '#' + '000000'.substr(0, 6 - hexColor.length) + hexColor;
 }
-
-
-
-const m = new Matrix(5, 6);
-
-m.data = [[1, 0, 0, 0, 1, 0],
-  [1, 1, 0, 0, 0, 1],
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 1],
-  [0, 0, 0, 0, 0, 1]
-];
-m.print();
-m.colorize();
-
-m.data = [[1, 1, 1, 1, 1, 1],
-  [1, 0, 1, 0, 0, 1],
-  [1, 0, 1, 0, 0, 1],
-  [1, 0, 1, 0, 0, 1],
-  [1, 1, 1, 1, 1, 1]
-];
-m.print();
-m.colorize();
-console.log('done');

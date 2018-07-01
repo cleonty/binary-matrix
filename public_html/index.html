@@ -6,25 +6,31 @@
     <link rel="stylesheet" type="text/css" href="app.css"/>
   </head>
   <body ng-controller="appController as ctrl">
-    <input required type="number" max="40" min="1" ng-model="ctrl.n"/>
-    <input required type="number" max="40" min="1" ng-model="ctrl.m"/>
-    <input type="button" value="Новая матрица" ng-click="ctrl.newMatrix()">
+    <form name="nmForm">
+      <input required type="number" min="1" max="40" maxlength="2" ng-model="ctrl.n" title="Число строк"/>
+      x
+      <input required type="number" min="1" max="40" maxlength="2" ng-model="ctrl.m" title="Число столбцов"/>
+      <input type="button" value="Новая матрица" ng-click="ctrl.newMatrix()" ng-disabled="!nmForm.$valid">
+      <input type="button" ng-show="ctrl.matrix" ng-cloak ng-click="ctrl.findDomains()" value="Посчитать домены" ng-disabled="!ctrl.matrixEditable"/>
+    </form>
+    <div class="error" ng-cloak ng-show="!nmForm.$valid">N и M в диапазоне от 1 до 40</div>
+    <form name="autoForm" ng-show="ctrl.matrix" ng-cloak>
+      <input required type="number" min="0.01" max="0.99" step="0.01" ng-model="ctrl.prob" title="Вероятность появления единицы"/>
+      <input type="button" ng-click="ctrl.autoTest()" value="АВТО" ng-disabled="!autoForm.$valid" title="Автоматически заполить матрицу и найти домены"/>
+    </form>
+    <div class="error" ng-cloak ng-show="!autoForm.$valid">Вероятность в диапазоне от 0.01 до 0.99</div>
     <div ng-if="ctrl.matrix" ng-cloak>
       <div class="matrix">
         <div class="row" ng-repeat="(i, row) in ctrl.matrix.data track by $index">
           <div class="cell"
                ng-repeat="(j, val) in row track by $index"
                ng-click="ctrl.toggleColor(i, j)"
-               ng-style="{'background-color': ctrl.matrix.palette[val]}"
-               ng-style="{'cursor': ctrl.matrixEditable ? 'pointer' : 'default'}"
-               >
+               ng-style="{'background-color': ctrl.matrix.palette[val], 'cursor': ctrl.matrixEditable ? 'pointer' : 'default'}">
             {{val > 0 ? 1 : 0}}
           </div>
         </div>
       </div>
-      <input type="button" ng-click="ctrl.findDomains()" value="Посчитать домены" ng-disabled="!ctrl.matrixEditable"/>
-      <input required type="number" max="0.99" min="0.01" step=".01" ng-model="ctrl.prob"/>
-      <input type="button" ng-click="ctrl.autoTest()" value="АВТО"/>
+
       <div>Количество доменов: {{ctrl.matrix.domainCount}}</div>
       <table class="results" ng-if="ctrl.testResults.length > 0">
         <tr>
@@ -41,6 +47,6 @@
     </div>
   </body>
   <script src="angular.min.js"></script>
-  <script src="solution.js"></script>
+  <script src="matrix.js"></script>
   <script src="app.js"></script>
 </html>

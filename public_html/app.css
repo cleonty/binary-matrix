@@ -64,8 +64,17 @@ input.ng-invalid {
 form {
   display: flex;
   align-items: center;
+  margin: 5px;
 }
 
 span {
   margin: 0 5px;
+}
+
+div.domain-count {
+  margin-left: 10px;
+}
+
+h1 {
+  text-align: center;
 }

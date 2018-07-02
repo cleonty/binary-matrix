@@ -24,7 +24,7 @@
     <form name="manualForm" ng-show="ctrl.matrix" ng-cloak>
       <span>Или установите единицы щелчком мыши и нажмите</span><input type="button" ng-click="ctrl.findDomains()" value="Посчитать домены" ng-disabled="!ctrl.matrixEditable"/>
     </form>
-    <span ng-show="ctrl.matrix" ng-cloak>Количество доменов в матрице: {{ctrl.finished ? ctrl.matrix.domainCount : 'неизвестно'}}</span>
+    <div class="domain-count" ng-show="ctrl.matrix" ng-cloak>Количество доменов в матрице: {{ctrl.finished ? ctrl.matrix.domainCount : 'неизвестно'}}</div>
     <div ng-if="ctrl.matrix" ng-cloak>
       <div class="matrix">
         <div class="row" ng-repeat="(i, row) in ctrl.matrix.data track by $index">

@@ -9,6 +9,7 @@ app.controller('appController', function () {
   const maxTestResults = 10;
   const ctrl = this;
   this.matrixEditable = false;
+  this.finished = false;
   
   this.newMatrix = function () {
     ctrl.matrix = new Matrix(ctrl.n, ctrl.m);
@@ -22,9 +23,11 @@ app.controller('appController', function () {
   this.findDomains = function () {
     ctrl.matrix.colorize();
     ctrl.matrixEditable = false;
+    ctrl.finished = true;
   };
   this.autoTest = function () {
     ctrl.matrixEditable = false;
+    ctrl.finished = true;
     const domainCount = ctrl.matrix.auto(ctrl.prob);
     const testResult = {
       prob: ctrl.prob.toFixed(2),

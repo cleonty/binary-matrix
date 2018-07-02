@@ -1,0 +1,80 @@
+.matrix {
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  margin: 7px 5px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.cell {
+  display: flex;
+  width: 20px;
+  height: 20px;;
+  font-size: 16px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  margin: 2px;
+  border: black 1px solid;
+}
+
+.results {
+  border-collapse: collapse;
+}
+.results, .results td, .results th {
+  border: 1px solid black;
+}
+
+.results td, .results th {
+  padding: 5px 5px;
+  text-align: center;
+}
+
+.results th {
+  height: 50px;
+  vertical-align: middle;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+input {
+  margin: 0 5px;
+}
+
+input[type="number"] {
+  width: 55px;
+  padding: 3px;
+  outline: none;
+}
+
+input.ng-invalid {
+  border: red 1px solid;
+}
+
+.error {
+  border: red 1px solid;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+}
+
+span {
+  margin: 0 5px;
+}
+
+div.domain-count {
+  margin-left: 10px;
+}
+
+h1 {
+  text-align: center;
+}

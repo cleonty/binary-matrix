@@ -3,6 +3,10 @@ const app = angular.module('app', []);
 app.controller('appController', function () {
   this.n = 5;
   this.m = 6;
+  this.minN = 1;
+  this.maxN = 40;
+  this.minM = 1;
+  this.maxM = 40;
   this.prob = 0.5;
   this.matrix = null;
   this.testResults = [];

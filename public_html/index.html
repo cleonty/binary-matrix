@@ -8,22 +8,22 @@
   <body ng-controller="appController as ctrl">
     <h1>Поиск доменов в матрице</h1>
     <form name="nmForm">
-      <input type="button" value="Новая матрица" ng-click="ctrl.newMatrix()" ng-disabled="!nmForm.$valid"> размером 
-      <input required type="number" name="n" min="1" max="40" ng-model="ctrl.n" title="Число строк"/> строк на 
-      <input required type="number" name="m" min="1" max="40" ng-model="ctrl.m" title="Число столбцов"/> столбцов
-      <span class="error" ng-cloak ng-show="!nmForm.n.$valid">Ошибка: Число строк от 1 до 40</span>
-      <span class="error" ng-cloak ng-show="!nmForm.m.$valid">Ошибка: Число столбцов от 1 до 40</span>
+      <input type="button" value="Создать матрицу" ng-click="ctrl.newMatrix()" ng-disabled="!nmForm.$valid"><span>размером</span>
+      <input required type="number" name="n" min="{{ctrl.minN}}" max="{{ctrl.maxN}}" ng-model="ctrl.n" title="Число строк от {{ctrl.minN}} до {{ctrl.maxN}}"/><span>строк на</span>
+      <input required type="number" name="m" min="{{ctrl.minM}}" max="{{ctrl.maxM}}" ng-model="ctrl.m" title="Число столбцов от {{ctrl.minM}} до {{ctrl.maxM}}"/><span>столбцов.</span>
+      <span class="error" ng-cloak ng-show="!nmForm.n.$valid">Ошибка: Число строк от 1 до 40.</span>
+      <span class="error" ng-cloak ng-show="!nmForm.m.$valid">Ошибка: Число столбцов от 1 до 40.</span>
     </form>
     <form name="autoForm" ng-show="ctrl.matrix" ng-cloak>
       <input type="button" ng-click="ctrl.autoTest()" value="Автоматически" ng-disabled="!autoForm.$valid" title="Автоматически заполить матрицу и найти домены"/>
-      заполнить матрицу единицами с вероятностью 
-      <input required type="number" name="prob" min="0.01" max="0.99" step="0.01" ng-model="ctrl.prob" title="Вероятность появления единицы"/>
+      <span>заполнить матрицу единицами с вероятностью</span>
+      <input required type="number" name="prob" min="0.01" max="0.99" step="0.01" ng-model="ctrl.prob" title="Вероятность появления единицы"/>.
       <span class="error" ng-cloak ng-show="!autoForm.prob.$valid">Ошибка: Вероятность в диапазоне от 0.01 до 0.99</span>
     </form>
     <form name="manualForm" ng-show="ctrl.matrix" ng-cloak>
-      или установите единицы щелчком мыши и нажмите <input type="button" ng-click="ctrl.findDomains()" value="Посчитать домены" ng-disabled="!ctrl.matrixEditable"/>
+      <span>Или установите единицы щелчком мыши и нажмите</span><input type="button" ng-click="ctrl.findDomains()" value="Посчитать домены" ng-disabled="!ctrl.matrixEditable"/>
     </form>
-    <div ng-show="ctrl.matrix" ng-cloak>Количество доменов в матрице: {{ctrl.finished ? ctrl.matrix.domainCount : 'неизвестно'}}</div>
+    <span ng-show="ctrl.matrix" ng-cloak>Количество доменов в матрице: {{ctrl.finished ? ctrl.matrix.domainCount : 'неизвестно'}}</span>
     <div ng-if="ctrl.matrix" ng-cloak>
       <div class="matrix">
         <div class="row" ng-repeat="(i, row) in ctrl.matrix.data track by $index">
